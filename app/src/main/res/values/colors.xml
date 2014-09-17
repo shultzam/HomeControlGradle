@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ActionBar colors -->
+    
+    <color name="actionbar_background">#000000</color>
+    <color name="actionbar_tab_background">#000000</color>
+    <color name="actionbar_tab_underline">#00cc00</color>
+    
+    <!-- ListView Colors -->
+    <color name="listview_zones_selected">#ddd</color>
+</resources>
