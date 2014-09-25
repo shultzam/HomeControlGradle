@@ -29,7 +29,7 @@ public class FragHome extends Fragment {
 	ZoneList listZones;
 	TextView tvNumZones;
 	GridView gvZones;
-// Poops go poo
+// Poops go poo poo
 	CheckBox cbAllZones;
 
 	HomeZoneIconAdapter iconAdapter;
