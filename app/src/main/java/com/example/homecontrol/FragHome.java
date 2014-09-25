@@ -22,6 +22,7 @@ import com.example.homecontrol.model.HomeZoneIconAdapter;
 import com.example.homecontrol.model.Zone;
 import com.example.homecontrol.model.ZoneList;
 
+// This is to fuck with you
 public class FragHome extends Fragment {
 	private final static String LOGTAG = "HOMECONTROL";
 
@@ -52,7 +53,6 @@ public class FragHome extends Fragment {
 		if (savedState != null){
 			boolean checked = savedState.getBoolean("allZones");
 			Log.d(LOGTAG, "(RestoreState) ALL ZONES:" + checked);
-			// comment there
 			cbAllZones.setChecked(checked);
 			Log.d(LOGTAG, "(RestoreState) setChecked:" + savedState.getBoolean("allZones"));
 			

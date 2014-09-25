@@ -157,7 +157,8 @@ public class FragZones extends Fragment {
 
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
-		outState.putParcelable("zones", listZones);
+
+        outState.putParcelable("zones", listZones);
 	}
 	
 	/*
