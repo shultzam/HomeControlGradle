@@ -170,11 +170,10 @@ public class FragZones extends Fragment {
 		if(resultCode != Activity.RESULT_OK) return;
 		
 		if (requestCode == REQ_ZONE_NAME){
-					
 			String zoneName = data.getSerializableExtra(AddZoneDialog.EXTRA_ZONE_NAME).toString();
-			//int imgResId = (int) data.getSerializableExtra(AddZoneDialog.EXTRA_ZONE_ICON);
+
             int imgResId = Integer.parseInt((String)data.getSerializableExtra(AddZoneDialog.EXTRA_ZONE_ICON));
-			
+
 			Zone z = new Zone(zoneName, imgResId);
 			// add zone to database...
 			zoneSource.addZone(z);
@@ -182,6 +181,8 @@ public class FragZones extends Fragment {
 			listZones.add(z);
 			// notify adapter to populate ListView
 			zoneAdapter.notifyDataSetChanged();
+
+
 		}
 	}
 
