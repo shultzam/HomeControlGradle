@@ -109,7 +109,8 @@ public class AddZoneDialog extends DialogFragment {
 	public void sendResult(int resultCode){
 		String newName = etZoneName.getText().toString();
 		// gets resource id of the icon selected
-		int iconResource = ids.getResourceId(selectedIcon, -1);
+        // use iconResource as string for passing with intent
+        String iconResource = String.valueOf(ids.getResourceId(selectedIcon, -1));
 		
 		if ((newName.length() < 1) || (newName == null) || (newName == "")){
 			Toast.makeText(getActivity(), "You must enter a name.", Toast.LENGTH_SHORT).show();
