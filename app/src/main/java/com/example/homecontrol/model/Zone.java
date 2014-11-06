@@ -5,10 +5,9 @@ import java.util.ArrayList;
 
 public class Zone{
 
-	private long _id;
 	private String _name;	// name of zone
 	private int _imgResId;	// resource id for icon
-	ArrayList<WirelessComponent> _components;	// list of components associated with zone (i.e. lights)
+	ArrayList<Component> _components;	// list of components associated with zone (i.e. lights)
 	
 	/* constructors */
 	public Zone(){}
@@ -21,12 +20,12 @@ public class Zone{
 		this._name = name;
 		this._imgResId = imgResId;
 	}
-	
-	public Zone(long id, String name, int imgResId){
-		this._name = name;
-		this._imgResId = imgResId;
-		this._id = id;
-	}
+
+    public Zone(String name, int imgResId, ArrayList<Component> components){
+        this._name = name;
+        this._imgResId = imgResId;
+        this._components = components;
+    }
 	
 	/* Set Methods */
 	public void setName(String name){
@@ -36,11 +35,11 @@ public class Zone{
 	public void setImgResId(int imgResId){
 		this._imgResId = imgResId;
 	}
-	
-	public void setId(long id){
-		this._id = id;
-	}
-	
+
+    public void setComponents(ArrayList<Component> components){
+        this._components = components;
+    }
+
 	/* Get Methods */
 	public String getName(){
 		return this._name;
@@ -49,9 +48,19 @@ public class Zone{
 	public int getImgResId(){
 		return this._imgResId;
 	}
-	
-	public long getId(){
-		return this._id;
-	}
-	
+
+    public ArrayList<Component> getComponents(){
+        return this._components;
+    }
+
+    /* Modifiers */
+    public void addComponent(Component c){
+        if (!_components.contains(c))
+            _components.add(c);
+    }
+
+    public void removeComponent(Component c){
+        if (_components.contains(c))
+            _components.remove(c);
+    }
 }

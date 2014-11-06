@@ -9,11 +9,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends FragmentActivity{
-	
+    public static final String LOGTAG = "HOME CONTROL";
+
 	ActionBar.Tab tabHome, tabZones, tabSettings;
 	Fragment fragHome = new FragHome();
 	Fragment fragZones = new FragZones();
@@ -23,12 +25,13 @@ public class MainActivity extends FragmentActivity{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+
 		actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		
+
 		tabHome = actionBar.newTab().setText("Home").setTag("Home");
 		tabHome.setIcon(R.drawable.tab_home);
 		tabZones = actionBar.newTab().setText("Zones").setTag("Zones");

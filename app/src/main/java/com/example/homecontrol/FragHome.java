@@ -3,7 +3,6 @@ package com.example.homecontrol;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.Toast;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -41,28 +39,28 @@ public class FragHome extends Fragment {
 			Bundle savedState) {
 		
 		View view = inflater.inflate(R.layout.frag_home, container, false);
-		
+
 		// get zone database
 		zoneSource = new ZonesDataSource(getActivity());
 		//zoneSource.open();
-		
+
 		tvNumZones = (TextView) view.findViewById(R.id.tvZoneStatus);
 		gvZones = (GridView) view.findViewById(R.id.gvZones);
 		cbAllZones = (CheckBox) view.findViewById(R.id.cbAll);
-	
+
 		if (savedState != null){
 			boolean checked = savedState.getBoolean("allZones");
 			Log.d(LOGTAG, "(RestoreState) ALL ZONES:" + checked);
 			cbAllZones.setChecked(checked);
 			Log.d(LOGTAG, "(RestoreState) setChecked:" + savedState.getBoolean("allZones"));
-			
+
 		}
-		
+
 		listZones = new ZoneList();
 	
 		iconAdapter = new HomeZoneIconAdapter(getActivity(), listZones);
 		gvZones.setAdapter(iconAdapter);
-		
+
 		// get all zones from database
 		populateZonesFromDB();
 		
@@ -79,7 +77,7 @@ public class FragHome extends Fragment {
 			
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				if (listZones.size() > 0){
+				/*if (listZones.size() > 0){
 					// if we check "all zones" icon, we disable selection of
 					// individual zones in the grid view and vice versa
 					if (isChecked){
@@ -95,7 +93,7 @@ public class FragHome extends Fragment {
 							v.findViewById(R.id.tvZoneName).setEnabled(true);
 						}
 					}
-				}
+				} */
 			}
 		});
 
@@ -110,7 +108,7 @@ public class FragHome extends Fragment {
 		
 	public int populateZonesFromDB(){
 		zoneSource.open();
-		
+
 		if (listZones == null)
 			listZones = new ZoneList();
 	

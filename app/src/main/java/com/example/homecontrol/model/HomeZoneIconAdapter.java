@@ -35,7 +35,7 @@ public class HomeZoneIconAdapter extends BaseAdapter {
 
 	@Override
 	public long getItemId(int index) {
-		return zones.get(index).getId();
+		return index;
 	}
 
 	@SuppressWarnings("deprecation")
