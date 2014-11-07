@@ -6,7 +6,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Random;
 
 import android.app.Activity;
 import android.content.Context;
@@ -105,10 +104,11 @@ public class FragZones extends Fragment {
 			ZoneList tempList = new ZoneList((ZoneList) savedState.getParcelable("zones"));
 			listZones.clear();
 			zoneAdapter.notifyDataSetChanged();
-			for (int i = 0; i < tempList.size(); i++){
-				listZones.add(tempList.get(i));
-				zoneAdapter.notifyDataSetChanged();
-			}
+            for (Zone z : tempList){
+                listZones.add(z);
+                zoneAdapter.notifyDataSetChanged();
+            }
+
 		} else {
 			populateFromDB();
 		}
@@ -161,8 +161,8 @@ public class FragZones extends Fragment {
         outState.putParcelable("zones", listZones);
 	}
 	
-	/*
-	 * Implemented to recieve the new Zone name from a 
+	/**
+	 * Receive the new Zone name and image resource id from a
 	 * custom dialog.
 	 */
 	@Override
@@ -186,17 +186,22 @@ public class FragZones extends Fragment {
 		}
 	}
 
-	/*
-	 * Functions to manipulate the currently stored zones
-	 */
+    /**
+     * Shows a pop up dialog to add a new zone to the list.  Adds the zone
+     * and its associated icon to the list and database via onActivityResult.
+     */
 	public void addZone(){
 		
 		FragmentManager fm = getActivity().getSupportFragmentManager();
 		AddZoneDialog dialog = new AddZoneDialog().newInstance(listZones);
 		dialog.setTargetFragment(FragZones.this, REQ_ZONE_NAME);
 		dialog.show(fm, "addzone");
-	} 
-	
+	}
+
+    /**
+     * Removes a zone from the list of zones as well as from
+     * the database.
+     */
 	public void removeZone(){
 		if (selZone != null){
 			listZones.remove(selZone);
@@ -209,11 +214,11 @@ public class FragZones extends Fragment {
 		} else
 			Toast.makeText(getActivity(), "Select zone to remove", Toast.LENGTH_SHORT).show();
 	}
-	
-	
-	/*
-	 * Interract with database
-	 */
+
+
+    /**
+     * Populates the list of zones from the Database.
+     */
 	public void populateFromDB(){
 		// make sure listZones is clear before populating
 		listZones.clear();

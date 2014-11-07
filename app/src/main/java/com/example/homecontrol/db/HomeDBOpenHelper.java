@@ -10,28 +10,28 @@ public class HomeDBOpenHelper extends SQLiteOpenHelper {
 	public final static String DATABASE_NAME = "homeControlDB.db";
 	public final static String TABLE_ZONES = "zones";
 	public final static String TABLE_COMPONENTS = "components";
-	private final static int DATABASE_VERSION = 1; 
-	
-	/* COMMON COLUMN NAMES */
-	public final static String COLUMN_ID = "_id";
-	public final static String COLUMN_RESOURCEID = "resourceId";
-	
+	private final static int DATABASE_VERSION = 1;
+
 	/*  ZONE TABLE COLUMN NAMES */
-	public final static String COLUMN_ZONE_NAME = "zoneName";
+	public final static String COLUMN_ZONE_NAME = "zone";
+    public final static String COLUMN_RESOURCEID = "resourceId";
 	
 	/* COMPONENETS TABLE COLUMN NAMES */
-	public final static String COLUMN_COMP_NAME = "compName";
-	public final static String COLUMN_ZONE_ID = "zoneId";
+    public final static String COLUMN_COMP_ZONE_NAME = "czone"; // references the associated zone
+	public final static String COLUMN_COMP_NAME = "component";
+	public final static String COLUMN_IP = "ip";
 	
-	private static final String CREATE_ZONES_TABLE = "CREATE TABLE " + TABLE_ZONES + " (" + 
-			COLUMN_ID + " INTEGER PRIMARY KEY, " + 
+	private static final String CREATE_ZONES_TABLE = "CREATE TABLE " + TABLE_ZONES + " (" +
 			COLUMN_ZONE_NAME + " STRING, " + 
-			COLUMN_RESOURCEID + " INTEGER)"; 
+			COLUMN_RESOURCEID + " INTEGER, " +
+            "PRIMARY KEY (" + COLUMN_ZONE_NAME + "))";
 	private static final String CREATE_COMPONENTS_TABLE = "CREATE TABLE " + TABLE_COMPONENTS + " (" +
-			COLUMN_ID + " INTEGER PRIMARY KEY, " + 
-			COLUMN_ZONE_ID + " INTEGER, " +
+            COLUMN_COMP_ZONE_NAME + " STRING, " +
 			COLUMN_COMP_NAME + " STRING, " + 
-			COLUMN_RESOURCEID + " INTEGER)";
+			COLUMN_IP + "STRING, " +
+            "PRIMARY KEY (" + COLUMN_COMP_ZONE_NAME + ", " + COLUMN_IP + "), " +
+            "FOREIGN KEY (" + COLUMN_COMP_ZONE_NAME + ") REFERENCES " + TABLE_ZONES + " (" + COLUMN_ZONE_NAME + ") " +
+                "ON DELETE CASCADE )";
 
 	/* constructor */
 	public HomeDBOpenHelper(Context context) {

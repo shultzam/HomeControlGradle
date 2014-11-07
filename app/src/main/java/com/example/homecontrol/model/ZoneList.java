@@ -64,7 +64,6 @@ public class ZoneList extends ArrayList<Zone> implements Parcelable{
 		for (int i = 0; i < size; i++){
 			/* get ith "zone" in this zonelist */
 			Zone z = this.get(i);
-			dest.writeLong(z.getId());
 			dest.writeString(z.getName());
 			dest.writeInt(z.getImgResId());
 		}
@@ -82,7 +81,6 @@ public class ZoneList extends ArrayList<Zone> implements Parcelable{
 			 * values and add it to the list
 			 */
 			Zone z = new Zone();
-			z.setId(in.readLong());
 			z.setName(in.readString());
 			z.setImgResId(in.readInt());
 			this.add(z);
